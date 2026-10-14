@@ -1,0 +1,15 @@
+# Environment and dependencies
+node_modules/
+package-lock.json
+
+# Local workspace & personal data
+personal/
+dist/
+plans/
+
+# OS / IDE artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+scratch/

@@ -1,0 +1,15 @@
+{
+  "name": "obmani-serbskogo",
+  "version": "1.0.0",
+  "description": "Психологический симулятор судебно-психиатрической экспертизы (MMPI-2 / СМИЛ)",
+  "keywords": [
+    "game",
+    "web",
+    "browser",
+    "psychiatry",
+    "mmpi-2",
+    "simulator"
+  ],
+  "author": "",
+  "license": "MIT"
+}

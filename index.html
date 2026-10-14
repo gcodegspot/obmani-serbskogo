@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЭКСПЕРТИЗА: ОБМАНИ СЕРБСКОГО</title>
+  <meta name="description" content="Психологический симулятор психиатрической экспертизы">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="./favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Share+Tech+Mono&family=VT323&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="crt-body">
+  <!-- CRT Оболочка: сканлайны, свечение люминофора и виньетка кинескопа -->
+  <div class="crt-scanlines" aria-hidden="true"></div>
+  <div class="crt-flicker" aria-hidden="true"></div>
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <!-- Терминальный монитор -->
+  <div class="terminal-chassis">
+    <!-- Основной терминальный контейнер игры -->
+    <main id="app" class="terminal-viewport">
+      <!-- Динамический рендер экранов -->
+    </main>
+  </div>
+
+  <script src="./js/questions.js"></script>
+  <script src="./js/engine.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
