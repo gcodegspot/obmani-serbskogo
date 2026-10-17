@@ -398,7 +398,7 @@ function renderDossierScreen() {
         </button>
       </div>
       <div class="text-center text-[11px] text-white/40 font-mono mb-1">
-        Управление: [1] / [Y] — ДА &nbsp;•&nbsp; [2] / [N] — НЕТ &nbsp;•&nbsp; [ESC] — Вернуться к выбору
+        Управление: [1] / [Y] — ВЕРНО &nbsp;•&nbsp; [2] / [N] — НЕВЕРНО &nbsp;•&nbsp; [ESC] — Вернуться к выбору
       </div>
     </div>
   `;
@@ -472,10 +472,10 @@ function renderQuestionnaireScreen() {
       <!-- Нижний компактный док ответов -->
       <div id="terminal-dock" class="terminal-stream-dock-mini">
         <button id="btn-dock-yes" class="btn-dock-mini btn-dock-yes">
-          [ 1 ] ДА
+          [ 1 ] ВЕРНО
         </button>
         <button id="btn-dock-no" class="btn-dock-mini btn-dock-no">
-          [ 2 ] НЕТ
+          [ 2 ] НЕВЕРНО
         </button>
       </div>
     </div>
@@ -490,7 +490,7 @@ function renderActiveQuestionHtml(question) {
         ${question.text}
       </div>
       <div class="stream-active-prompt">
-        <span class="prompt-arrow">&gt;</span> [ 1 ] ДА &nbsp;&nbsp; [ 2 ] НЕТ <span class="term-cursor"></span>
+        <span class="prompt-arrow">&gt;</span> [ 1 ] ВЕРНО &nbsp;&nbsp; [ 2 ] НЕВЕРНО <span class="term-cursor"></span>
       </div>
     </div>
   `;
@@ -555,7 +555,7 @@ function handleAnswer(answer) {
     activeNode.innerHTML = `
       <span class="stream-past-num">Q-${String(question.id).padStart(3, '0')}</span>
       <span class="stream-past-text">${question.text}</span>
-      <span class="stream-past-ans ${answer === 'yes' ? 'ans-yes' : 'ans-no'}">[ ${answer === 'yes' ? 'ДА' : 'НЕТ'} ]</span>
+      <span class="stream-past-ans ${answer === 'yes' ? 'ans-yes' : 'ans-no'}">[ ${answer === 'yes' ? 'ВЕРНО' : 'НЕВЕРНО'} ]</span>
       <span class="stream-past-time">${latency}</span>
     `;
   }
@@ -999,6 +999,18 @@ function renderVerdictScreen() {
           &gt;&gt; ДАЛЬНЕЙШАЯ СУДЬБА ПОДСЛЕДСТВЕННОГО (СУДЕБНОЕ РЕШЕНИЕ):
         </div>
         <p class="text-sm text-white">${verdict.epilogue}</p>
+      </div>
+
+      <!-- Плашка Telegram-канала -->
+      <div class="terminal-tg-banner">
+        <div class="tg-banner-inner">
+          <div class="tg-banner-text">
+            В свободное от придумывания игр время я работаю дейтинг&#8209;аутстаффом, проектирую странные железки, 3D&#8209;прототипы, анализирую свой геном и пишу на околоинженерные темы. Эти раскопки без цензуры в
+          </div>
+          <a href="https://t.me/gcodegspot" target="_blank" rel="noopener noreferrer" class="tg-banner-link">
+            [ → t.me/gcodegspot ]
+          </a>
+        </div>
       </div>
 
       <!-- Панель действий: Разбор полетов и Рестарт -->

@@ -1193,6 +1193,68 @@ body.crt-body {
     margin-bottom: 1rem;
 }
 
+/* Плашка Telegram-канала */
+.terminal-tg-banner {
+    border: 1px solid rgba(0, 255, 102, 0.45);
+    background: linear-gradient(135deg, rgba(0, 255, 102, 0.06) 0%, rgba(0, 180, 70, 0.04) 100%);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 18px rgba(0, 255, 102, 0.12), inset 0 0 12px rgba(0, 255, 102, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.terminal-tg-banner::before {
+    content: '>> TELEGRAM CHANNEL // AUTHOR DISPATCH';
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgba(0, 255, 102, 0.55);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+}
+
+.tg-banner-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tg-banner-text {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+    flex: 1;
+    min-width: 200px;
+}
+
+.tg-banner-link {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #00ff66;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.7);
+    transition: all 0.15s ease;
+    border: 1px solid rgba(0, 255, 102, 0.4);
+    padding: 0.35rem 0.75rem;
+    display: inline-block;
+}
+
+.tg-banner-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 18px rgba(0, 255, 102, 1);
+    border-color: #00ff66;
+    background: rgba(0, 255, 102, 0.15);
+    transform: translateX(2px);
+}
+
 .btn-term-restart {
     background: var(--term-surface);
     border: 2px solid var(--term-border);
