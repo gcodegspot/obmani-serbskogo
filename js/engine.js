@@ -298,10 +298,12 @@ class VerdictEngine {
             }
 
             const minGough = selectedCase.id === 'voices' ? 4 : 2;
+            // Pd < 70T: высокая психопатия несовместима с профилем чистого эндогенного психоза
+            const noPsychopathyContamination = tScores.Pd < 70;
             const validValidity = vrinScore < 4 && fpScore <= (isStrictFpCase ? 1 : 2) && goughIndex >= minGough;
             const noHesitationFail = !hesitation;
 
-            if (hasClinicalPeak && validValidity && noHesitationFail) {
+            if (hasClinicalPeak && validValidity && noPsychopathyContamination && noHesitationFail) {
                 // ПОБЕДА СИМУЛЯЦИИ ПСИХОЗА
                 return {
                     type: 'INSANITY_SUCCESS',
@@ -332,6 +334,8 @@ class VerdictEngine {
                     } else {
                         failReason = `Уровень психопатологических шкал (Pa=${tScores.Pa}T, Sc=${tScores.Sc}T) оказался недостаточным для подтверждения психоза (порог 70T).`;
                     }
+                } else if (!noPsychopathyContamination) {
+                    failReason = `Профиль психоза дискредитирован высокой психопатией (Pd = ${tScores.Pd}T при лимите < 70T). Одновременный пик Sc/Pa и высокий Pd указывает на диссоциальную личность, а не на эндогенное расстройство. Комиссия не признала бред аутентичным.`;
                 } else if (goughIndex < minGough) {
                     failReason = `Индекс Гоуфа F-K (${goughIndex} при норме ≥ ${minGough}) слишком низок — недостаточный уровень эмоционального напряжения и аффективного срыва.`;
                 } else if (hesitation) {
@@ -671,6 +675,14 @@ class DebriefEngine {
                         text: 'В серийных делах эксперты ищут антисоциальную психопатию. Высокий балл Pd на фоне попытки изобразить психоз выдал хладнокровного серийника.'
                     });
                 }
+                // Универсальная проверка: Pd >= 70T дискредитирует профиль психоза в любом деле
+                if (tScores.Pd >= 70) {
+                    analysisPoints.push({
+                        type: 'fail',
+                        tag: `[ ПСИХОЗ + ПСИХОПАТИЯ = РАЗОБЛАЧЕНИЕ: Pd = ${tScores.Pd}T ]`,
+                        text: `Одновременный пик по шкале психоза (Sc/Pa) и высокая психопатия (Pd = ${tScores.Pd}T ≥ 70T) — это несовместимые клинические образы. Эндогенный больной не демонстрирует одновременно бред и хладнокровный антисоциальный импульс. Комиссия расценила профиль как диссоциальную личность, а не психоз.`
+                    });
+                }
             } else if (selectedStrategy.id === 'dissimulation') {
                 const maxPd = (selectedCase.id === 'hunter' || selectedCase.id === 'fire' || selectedCase.id === 'voices') ? 60 : 65;
                 const maxL = (selectedCase.id === 'hunter' || selectedCase.id === 'fire' || selectedCase.id === 'voices') ? 60 : 65;
@@ -794,7 +806,11 @@ class DebriefEngine {
                 desc: 'Истинный психотик не высчитывает выгоду ответа. Отвечайте в темпе 1.2–2.0 секунды без зависаний на 4+ секунды.'
             });
             winningSteps.push({
-                title: '4. Интервенции комиссии (пословицы)',
+                title: '4. Держите психопатию в норме (Pd < 70T)',
+                desc: 'Высокий Pd несовместим с профилем эндогенного психоза: одновременный пик Sc/Pa и Pd ≥ 70T разоблачает диссоциальную личность, а не шизофреника. Избегайте вопросов о хладнокровии, бунтарстве и нарушении правил.'
+            });
+            winningSteps.push({
+                title: '5. Интервенции комиссии (пословицы)',
                 desc: 'При вопросе о пословицах выбирайте вычурное резонёрское толкование («метафизическая энтропия») или подозрительное/бредовое.'
             });
         } else if (selectedStrategy.id === 'dissimulation') {
